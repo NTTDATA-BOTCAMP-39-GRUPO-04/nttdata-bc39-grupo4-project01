@@ -40,7 +40,6 @@
             <groupId>com.nttdata.bc39.grupo04</groupId>
             <artifactId>api</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-            <scope>provided</scope>
         </dependency>
 
         <dependency>

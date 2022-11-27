@@ -4,6 +4,8 @@ import com.nttdata.bc39.grupo04.customer.persistence.CustomerEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mapping.context.MappingContext;
@@ -15,6 +17,7 @@ import org.springframework.data.mongodb.core.mapping.MongoPersistentEntity;
 import org.springframework.data.mongodb.core.mapping.MongoPersistentProperty;
 
 @SpringBootApplication
+@ComponentScan({ "com.nttdata.bc39.grupo04" })
 public class CustomerServiceApplication {
     @Autowired
     private ReactiveMongoOperations mongoTemplate;
