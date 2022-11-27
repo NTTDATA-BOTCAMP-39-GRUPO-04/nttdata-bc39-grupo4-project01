@@ -10,6 +10,7 @@
 		<module>credit-service</module>
 		<module>product-service</module>
 		<module>config-server</module>
+		<module>movements-service</module>
 	</modules>
     <parent>
 		<groupId>org.springframework.boot</groupId>

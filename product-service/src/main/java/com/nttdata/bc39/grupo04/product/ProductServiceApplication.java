@@ -2,10 +2,12 @@ package com.nttdata.bc39.grupo04.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-public class Main {
+@ComponentScan({"com.nttdata.bc39.grupo04"})
+public class ProductServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(ProductServiceApplication.class, args);
     }
 }

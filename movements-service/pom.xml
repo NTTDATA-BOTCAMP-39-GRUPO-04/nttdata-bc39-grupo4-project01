@@ -9,8 +9,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.nttdata.bc39.grupo04.product</groupId>
-    <artifactId>product-service</artifactId>
+    <groupId>com.nttdata.bc39.grupo04.movements</groupId>
+    <artifactId>movements-service</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -25,4 +25,5 @@
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>
+
 </project>

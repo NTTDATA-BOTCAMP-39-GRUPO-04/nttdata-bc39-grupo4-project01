@@ -1,4 +1,4 @@
-package com.nttdata.bc39.grupo04.credit;
+package com.nttdata.bc39.grupo04.movements;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,8 +6,8 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @ComponentScan({"com.nttdata.bc39.grupo04"})
-public class Main {
+public class MovementsServiceApplication {
     public static void main(String[] args) {
-        SpringApplication.run(Main.class, args);
+        SpringApplication.run(MovementsServiceApplication.class, args);
     }
 }
