@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: credit-service
+  cloud:
+    config:
+      enabled: true
+      label: master
+      uri: http://localhost:9097

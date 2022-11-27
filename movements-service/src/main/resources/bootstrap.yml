@@ -1,0 +1,8 @@
+spring:
+  application:
+    name: movements-service
+  cloud:
+    config:
+      enabled: true
+      label: master
+      uri: http://localhost:9097
