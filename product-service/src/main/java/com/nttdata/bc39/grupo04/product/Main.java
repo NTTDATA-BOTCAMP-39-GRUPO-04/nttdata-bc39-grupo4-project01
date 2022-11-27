@@ -1,4 +1,4 @@
-package com.nttdata.bc39.grupo04.api;
+package com.nttdata.bc39.grupo04.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
