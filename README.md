@@ -2,7 +2,7 @@
 ## Integrantes
 
 - Nelson Jaimes Gonzales (233430)
-- Ismael Jose Peralta Arrieche
+- Ismael Jose Peralta Arrieche (233431)
 
 ### Documento Draw-io
 - link: https://drive.google.com/file/d/1pNPVU40J9lS7hmyeNGZQ-VtZjR047bin/view?usp=sharing
