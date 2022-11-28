@@ -13,3 +13,4 @@
 [2022-11-28 12:11:07] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)
 [2022-11-28 12:11:27] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166965546784520221128
 [2022-11-28 12:11:43] [ DEBUG] [AccountServiceImpl:87] Error limites de deposito , Nro cuenta: 166965546784520221128 con monto: 0.5
+[2022-11-28 15:22:10] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)

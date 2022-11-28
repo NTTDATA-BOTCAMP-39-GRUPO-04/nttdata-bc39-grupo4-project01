@@ -26,9 +26,7 @@ public class AccountEntity {
     private String customerId;
     private List<HolderDTO> holders;
     private List<SignatoryDTO> signatories;
-    private String accountType;
     private double availableBalance;
     private Date createDate;
     private Date modifyDate;
-
 }
