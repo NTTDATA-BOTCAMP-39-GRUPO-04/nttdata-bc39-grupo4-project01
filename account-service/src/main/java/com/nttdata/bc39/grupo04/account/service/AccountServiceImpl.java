@@ -9,8 +9,7 @@ import com.nttdata.bc39.grupo04.api.exceptions.InvaliteInputException;
 import com.nttdata.bc39.grupo04.api.exceptions.NotFoundException;
 import com.nttdata.bc39.grupo04.api.utils.Constants;
 import io.netty.util.internal.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
@@ -29,7 +28,7 @@ import static com.nttdata.bc39.grupo04.api.utils.Constants.*;
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository repository;
     private final AccountMapper mapper;
-    private Logger LOG = LoggerFactory.getLogger(AccountServiceImpl.class);
+    private final Logger logger = Logger.getLogger(AccountServiceImpl.class);
 
     @Autowired
     public AccountServiceImpl(AccountRepository repository, AccountMapper mapper) {
@@ -44,8 +43,10 @@ public class AccountServiceImpl implements AccountService {
         }
         Mono<AccountEntity> entityMono = repository.findByAccount(accountNumber);
         if (Objects.isNull(entityMono.block())) {
+            logger.debug("Error, no existe la cuenta bancaria con Nro:" + accountNumber);
             throw new NotFoundException("Error, no existe la cuenta bancaria con Nro: " + accountNumber);
         }
+        logger.debug("Retornando detalle de la cuenta bancaria con Nro:" + accountNumber);
         return entityMono.map(mapper::entityToDto);
     }
 
@@ -54,6 +55,7 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.isNull(customerId)) {
             throw new InvaliteInputException("Error, codigo de cliente invalido");
         }
+        logger.debug("Retornando las cuentas bancarias del cliente con Nro:" + customerId);
         return repository.findAll().filter(x -> x.getCustomerId().equals(customerId)).map(mapper::entityToDto);
     }
 
@@ -63,16 +65,26 @@ public class AccountServiceImpl implements AccountService {
         AccountEntity entity = mapper.dtoToEntity(dto);
         entity.setAccount(generateAccountNumber());
         entity.setCreateDate(Calendar.getInstance().getTime());
-        return repository.save(entity).onErrorMap(DuplicateKeyException.class, ex -> new InvaliteInputException("Error , ya existe una cuenta con el Nro: " + dto.getAccount())).map(mapper::entityToDto);
+        return repository.save(entity)
+                .onErrorMap(DuplicateKeyException.class
+                        , ex -> throwDuplicateAccount(dto.getAccount()))
+                .map(mapper::entityToDto);
+    }
+
+    RuntimeException throwDuplicateAccount(String accountNumber) {
+        logger.debug("Error , ya existe una cuenta con el Nro: " + accountNumber);
+        return new InvaliteInputException("Error , ya existe una cuenta con el Nro: " + accountNumber);
     }
 
     @Override
     public Mono<AccountDTO> makeDepositAccount(double amount, String accountNumber) {
         AccountEntity entity = repository.findByAccount(accountNumber).block();
         if (Objects.isNull(entity)) {
+            logger.debug("Error, no existe la cuenta con Nro: " + accountNumber);
             throw new NotFoundException("Error, no existe la cuenta bancaria con Nro: " + accountNumber);
         }
         if (amount < MIN_DEPOSIT_AMOUNT || amount > MAX_DEPOSIT_AMOUNT) {
+            logger.debug("Error limites de deposito , Nro cuenta: " + accountNumber + " con monto: " + amount);
             throw new NotFoundException(String.format(Locale.getDefault(), "Error, los limites de DEPOSITO son min: %d sol y max: %d sol", MIN_DEPOSIT_AMOUNT, MAX_DEPOSIT_AMOUNT));
         }
         double newAvailableBalance = entity.getAvailableBalance() + amount;
@@ -85,13 +97,16 @@ public class AccountServiceImpl implements AccountService {
     public Mono<AccountDTO> makeWithdrawal(double amount, String accountNumber) {
         AccountEntity entity = repository.findByAccount(accountNumber).block();
         if (Objects.isNull(entity)) {
-            throw new NotFoundException("Error, no existe la cuenta bancaria con Nro: " + accountNumber);
+            logger.debug("Error, no existe la cuenta con Nro: " + accountNumber);
+            throw new NotFoundException("Error, no existe la cuenta con Nro: " + accountNumber);
         }
         if (amount < MIN_WITHDRAWAL_AMOUNT || amount > MAX_WITHDRAWAL_AMOUNT) {
+            logger.debug("El retirno, no cumple con los limites establecidos , Nro cuenta: " + accountNumber);
             throw new NotFoundException(String.format(Locale.getDefault(), "Error, los limites de RETIRO son min: %d sol y max: %d sol", MIN_WITHDRAWAL_AMOUNT, MAX_WITHDRAWAL_AMOUNT));
         }
         double availableBalance = entity.getAvailableBalance();
         if (amount > availableBalance) {
+            logger.debug("Saldo insuficiente, cuenta con Nro:" + accountNumber);
             throw new BadRequestException("Error,saldo insuficiente.");
         }
         availableBalance -= amount;
@@ -107,7 +122,8 @@ public class AccountServiceImpl implements AccountService {
 
     private void validateCreateAccount(AccountDTO dto) {
         if (Objects.isNull(dto)) {
-            throw new InvaliteInputException("Error, body invalido");
+            logger.debug("Error , objecto enviado invalido para la creacion de cuenta");
+            throw new InvaliteInputException("Error , objecto enviado invalido para la creacion de cuenta");
         }
         if (Objects.isNull(dto.getAccountType())) {
             throw new InvaliteInputException("Error, tipo de cuenta invalido");
@@ -118,6 +134,8 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.isNull(dto.getCustomerId())) {
             throw new InvaliteInputException("Error, codigo de cliente invalido");
         }
+
+        logger.debug("Data enviada para la creacion de cuenta, object= " + dto);
 
         if (dto.getAccountType().equals(Constants.CODE_ACCOUNT_EMPRESARIAL)) {
             if (Objects.isNull(dto.getHolders())) {
@@ -133,10 +151,12 @@ public class AccountServiceImpl implements AccountService {
                 }
             }
             if (dto.getProductId().equals(Constants.CODE_PRODUCT_CUENTA_AHORRO)) {
-                throw new InvaliteInputException("Error, una cuenta empresarial no puede tener cuentas de ahorro");
+                logger.debug("Error, un cliente empresarial no puede tener cuentas de ahorro, cliente: " + dto.getCustomerId());
+                throw new InvaliteInputException("Error, un cliente empresarial no puede tener cuentas de ahorro");
             }
             if (dto.getProductId().equals(CODE_PRODUCT_PLAZO_FIJO)) {
-                throw new InvaliteInputException("Error, una cuenta empresarial no puede tener cuentas de plazo fijo");
+                logger.debug("Error, un cliente empresarial no puede tener cuentas de plazo fijo" + dto.getCustomerId());
+                throw new InvaliteInputException("Error, un cliente empresarial no puede tener cuentas de plazo fijo");
             }
         }
         if (dto.getAccountType().equals(CODE_ACCOUNT_PERSONAL)) {
@@ -150,6 +170,7 @@ public class AccountServiceImpl implements AccountService {
                 AccountEntity account = repository.findAll().filter(x -> x.getProductId().equals(CODE_PRODUCT_CUENTA_AHORRO)
                         && x.getCustomerId().equals(dto.getCustomerId())).blockFirst();
                 if (account != null) {
+                    logger.debug("Error, un cliente personal solo puede tener un máximo de una cuenta de ahorro, cliente:" + dto.getCustomerId());
                     throw new InvaliteInputException("Error, un cliente personal solo puede tener un máximo de una cuenta de ahorro");
                 }
             }
@@ -157,6 +178,7 @@ public class AccountServiceImpl implements AccountService {
                 AccountEntity account = repository.findAll().filter(x -> x.getProductId().equals(CODE_PRODUCT_CUENTA_CORRIENTE)
                         && x.getCustomerId().equals(dto.getCustomerId())).blockFirst();
                 if (account != null) {
+                    logger.debug("Error, un cliente personal solo puede tener un máximo de una cuenta corriente, cliente:" + dto.getCustomerId());
                     throw new InvaliteInputException("Error, un cliente personal solo puede tener un máximo de una cuenta corriente");
                 }
             }

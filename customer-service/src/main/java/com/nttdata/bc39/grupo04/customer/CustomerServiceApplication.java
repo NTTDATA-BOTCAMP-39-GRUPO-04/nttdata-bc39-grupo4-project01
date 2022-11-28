@@ -1,6 +1,7 @@
 package com.nttdata.bc39.grupo04.customer;
 
 import com.nttdata.bc39.grupo04.customer.persistence.CustomerEntity;
+import org.apache.log4j.BasicConfigurator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,6 +24,7 @@ public class CustomerServiceApplication {
     private ReactiveMongoOperations mongoTemplate;
 
     public static void main(String[] args) {
+        BasicConfigurator.configure();
         SpringApplication.run(CustomerServiceApplication.class, args);
     }
 

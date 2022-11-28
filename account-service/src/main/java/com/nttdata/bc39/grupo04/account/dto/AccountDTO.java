@@ -24,5 +24,4 @@ public class AccountDTO implements Serializable {
     private Date createDate;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date modifyDate;
-
 }

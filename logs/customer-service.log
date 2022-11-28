@@ -1,0 +1,2 @@
+[2022-11-27 21:07:49] [ DEBUG] [CustomerServiceImpl:73] Error, el cliente nro: 12345545, ya esta registrado
+[2022-11-27 21:07:51] [ DEBUG] [CustomerServiceImpl:42] El cliente nro: 56345634wedw4434,no existe

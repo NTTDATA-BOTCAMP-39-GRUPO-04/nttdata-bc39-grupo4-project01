@@ -1,0 +1,3 @@
+[2022-11-27 20:51:34] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-27 21:05:54] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-27 21:05:57] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166950310358420221126

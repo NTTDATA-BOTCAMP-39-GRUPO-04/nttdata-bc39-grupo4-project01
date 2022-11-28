@@ -5,9 +5,9 @@ import com.nttdata.bc39.grupo04.api.exceptions.NotFoundException;
 import com.nttdata.bc39.grupo04.customer.dto.CustomerDto;
 import com.nttdata.bc39.grupo04.customer.persistence.CustomerEntity;
 import com.nttdata.bc39.grupo04.customer.persistence.CustomerRepository;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
@@ -19,6 +19,7 @@ import java.util.Objects;
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository repository;
     private final CustomerMapper mapper;
+    private final Logger logger = Logger.getLogger(CustomerServiceImpl.class);
 
     @Autowired
     public CustomerServiceImpl(CustomerRepository repository, CustomerMapper mapper) {
@@ -38,6 +39,7 @@ public class CustomerServiceImpl implements CustomerService {
         }
         Mono<CustomerEntity> entityMono = repository.findByCode(customerId);
         if (Objects.isNull(entityMono.block())) {
+            logger.debug("El cliente nro: " + customerId + ",no existe");
             throw new NotFoundException("The customer with code: " + customerId + " not exists");
         }
         return entityMono.map(mapper::entityToDto);
@@ -47,28 +49,41 @@ public class CustomerServiceImpl implements CustomerService {
     public Mono<Void> deleteCustomerById(String customerId) {
         Mono<CustomerEntity> entityMono = repository.findByCode(customerId);
         if (Objects.isNull(entityMono.block())) {
+            logger.debug("El cliente nro: " + customerId + ",no existe");
             throw new NotFoundException("The customer with code: " + customerId + " not exists");
         }
+        logger.debug("Cliente nro:" + customerId + " ,eliminado");
         return repository.deleteByCode(customerId);
     }
 
     @Override
     public Mono<CustomerDto> createCustomer(CustomerDto customerDto) {
+        if (Objects.isNull(customerDto)) {
+            throw new InvaliteInputException("Error, la informacion enviada no tiene formato valido");
+        }
         CustomerEntity entity = mapper.dtoToEntity(customerDto);
         entity.setDate(Calendar.getInstance().getTime());
         return repository.save(entity)
                 .onErrorMap(DuplicateKeyException.class,
-                        ex -> new InvaliteInputException("Duplicate key, customer with code: " + customerDto.getCode()))
-                .map(mapper::entityToDto);
+                        ex -> throwDuplicateCustomer(customerDto.getCode()))
+                .map(mapper::entityToDto)
+                .log("Cliente  nro: " + customerDto.getCode() + ", creado correctamente, data= "+ customerDto);
+    }
+
+    private RuntimeException throwDuplicateCustomer(String customerId) {
+        logger.debug("Error, el cliente nro: " + customerId + ", ya esta registrado");
+        return new InvaliteInputException("Duplicate key, customer with code: " + customerId);
     }
 
     @Override
     public Mono<CustomerDto> updateCustomerById(String customerId, CustomerDto customerDto) {
         CustomerEntity entity = repository.findByCode(customerId).block();
         if (Objects.isNull(entity)) {
+            logger.debug("El cliente nro: " + customerId + ",no existe");
             throw new NotFoundException("The customer with code: " + customerId + " not exists");
         }
         entity.setName(customerDto.getName());
+        logger.debug("cliente nro: " + customerId + ", actualizado correctamente, data=" + customerDto);
         return repository.save(entity).map(mapper::entityToDto);
     }
 }
