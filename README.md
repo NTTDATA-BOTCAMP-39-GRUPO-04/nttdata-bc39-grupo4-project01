@@ -12,3 +12,6 @@
 
 ### Documentacion del Proyecto
 - link: https://drive.google.com/drive/folders/1-gN0K72t7IJckvMiAeO4mtwAj58cTd6U?usp=sharing
+
+### POSTMAN
+- Link: https://app.getpostman.com/join-team?invite_code=b1fe6bab75932596be7ecc6ac6d2a453&target_code=a4f3afec4395daa9c30884dee48c0a5b
