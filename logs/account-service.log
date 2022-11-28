@@ -14,3 +14,34 @@
 [2022-11-28 12:11:27] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166965546784520221128
 [2022-11-28 12:11:43] [ DEBUG] [AccountServiceImpl:87] Error limites de deposito , Nro cuenta: 166965546784520221128 con monto: 0.5
 [2022-11-28 15:22:10] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:39:07] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:41:00] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:44:29] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:44:40] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:44:52] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:44:52] [ DEBUG] [AccountServiceImpl:193] Error, un cliente personal solo puede tener un máximo de una cuenta corriente, cliente:48352954
+[2022-11-28 15:45:03] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:45:03] [ DEBUG] [AccountServiceImpl:185] Error, un cliente personal solo puede tener un máximo de una cuenta de ahorro, cliente:48352954
+[2022-11-28 15:45:18] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:45:20] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:45:26] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:46:03] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166966794769020221128
+[2022-11-28 15:46:44] [ DEBUG] [AccountServiceImpl:87] Error limites de deposito , Nro cuenta: 166966794769020221128 con monto: 5000000.0
+[2022-11-28 15:47:40] [ DEBUG] [AccountServiceImpl:109] Saldo insuficiente, cuenta con Nro:166966794769020221128
+[2022-11-28 15:47:52] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:48:10] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:20325117831
+[2022-11-28 15:48:16] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:203251178315
+[2022-11-28 15:48:42] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:49:00] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:20325117835
+[2022-11-28 15:49:44] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:49:49] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:49:49] [ DEBUG] [AccountServiceImpl:166] Error, un cliente empresarial no puede tener cuentas de ahorro, cliente: 20325117835
+[2022-11-28 15:50:00] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:50:00] [ DEBUG] [AccountServiceImpl:170] Error, un cliente empresarial no puede tener cuentas de plazo fijo20325117835
+[2022-11-28 15:50:41] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:53:17] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=20325117835, holders=null, signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:53:30] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 15:53:30] [ DEBUG] [AccountServiceImpl:170] Error, un cliente empresarial no puede tener cuentas de plazo fijo20325117835
+[2022-11-28 15:54:53] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 15:54:59] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:483529545
+[2022-11-28 15:55:02] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
