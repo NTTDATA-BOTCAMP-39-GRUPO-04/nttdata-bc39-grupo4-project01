@@ -1,3 +1,15 @@
 [2022-11-27 20:51:34] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
 [2022-11-27 21:05:54] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
 [2022-11-27 21:05:57] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166950310358420221126
+[2022-11-28 11:52:11] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 11:56:48] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 11:56:48] [ DEBUG] [AccountServiceImpl:167] Error, un cliente empresarial no puede tener cuentas de ahorro, cliente: 20325117835
+[2022-11-28 11:56:59] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, accountType=PERSONAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 11:57:01] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=48352954, holders=null, signatories=null, accountType=PERSONAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 11:57:01] [ DEBUG] [AccountServiceImpl:186] Error, un cliente personal solo puede tener un máximo de una cuenta de ahorro, cliente:48352954
+[2022-11-28 11:57:23] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-28 12:10:35] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=01, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 12:10:35] [ DEBUG] [AccountServiceImpl:167] Error, un cliente empresarial no puede tener cuentas de ahorro, cliente: 20325117835
+[2022-11-28 12:11:07] [ DEBUG] [AccountServiceImpl:151] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=02, customerId=20325117835, holders=[HolderDTO(code=48352954, name=NELSON JAIMES GONZALES), HolderDTO(code=09650333, name=ROSA MARIA PALACIOS)], signatories=[SignatoryDTO(code=48352954, name=NELSON JAIMES GONZALES)], accountType=EMPRESARIAL, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-28 12:11:27] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166965546784520221128
+[2022-11-28 12:11:43] [ DEBUG] [AccountServiceImpl:87] Error limites de deposito , Nro cuenta: 166965546784520221128 con monto: 0.5

@@ -15,6 +15,8 @@ import reactor.core.publisher.Mono;
 import java.util.Calendar;
 import java.util.Objects;
 
+import static com.nttdata.bc39.grupo04.api.utils.Constants.*;
+
 @Service
 public class CustomerServiceImpl implements CustomerService {
     private final CustomerRepository repository;
@@ -58,16 +60,36 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Mono<CustomerDto> createCustomer(CustomerDto customerDto) {
-        if (Objects.isNull(customerDto)) {
-            throw new InvaliteInputException("Error, la informacion enviada no tiene formato valido");
-        }
+        validationCreateCustomer(customerDto);
         CustomerEntity entity = mapper.dtoToEntity(customerDto);
         entity.setDate(Calendar.getInstance().getTime());
         return repository.save(entity)
                 .onErrorMap(DuplicateKeyException.class,
                         ex -> throwDuplicateCustomer(customerDto.getCode()))
                 .map(mapper::entityToDto)
-                .log("Cliente  nro: " + customerDto.getCode() + ", creado correctamente, data= "+ customerDto);
+                .log("Cliente  nro: " + customerDto.getCode() + ", creado correctamente, data= " + customerDto);
+    }
+
+    private void validationCreateCustomer(CustomerDto dto) {
+        if (Objects.isNull(dto)) {
+            throw new InvaliteInputException("Error, el formato de la peticion es invalido");
+        }
+        if (Objects.isNull(dto.getCode())) {
+            throw new InvaliteInputException("Error, el codigo de cliente (code) es invalido");
+        }
+        if (Objects.isNull(dto.getType())) {
+            throw new InvaliteInputException("Error, el tipo de cliente (type) es invalido");
+        }
+        if (!dto.getType().equals(CODE_ACCOUNT_EMPRESARIAL) &&
+                !dto.getType().equals(CODE_ACCOUNT_PERSONAL)) {
+            throw new InvaliteInputException("Error, el tipo de cuenta invalido (accountType), verifique los datos admitidos: 'PERSONAL' o 'EMPRESARIAL'");
+        }
+        if (dto.getType().equals(CODE_ACCOUNT_PERSONAL) && dto.getCode().length() != LENGHT_CODE_PERSONAL_CUSTOMER) {
+            throw new InvaliteInputException("Error, la longitud del codigo del cliente (code) es invalido, debe de ingresar el DNI de la persona.");
+        }
+        if (dto.getType().equals(CODE_ACCOUNT_EMPRESARIAL) && dto.getCode().length() != LENGHT_CODE_EMPRESARIAL_CUSTOMER) {
+            throw new InvaliteInputException("Error, la longitud del codigo del cliente (code) es invalido, debe de ingresar el RUC de la empresa.");
+        }
     }
 
     private RuntimeException throwDuplicateCustomer(String customerId) {

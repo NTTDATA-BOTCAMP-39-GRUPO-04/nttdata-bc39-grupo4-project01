@@ -134,6 +134,19 @@ public class AccountServiceImpl implements AccountService {
         if (Objects.isNull(dto.getCustomerId())) {
             throw new InvaliteInputException("Error, codigo de cliente invalido");
         }
+        if (!dto.getAccountType().equals(CODE_ACCOUNT_EMPRESARIAL) &&
+                !dto.getAccountType().equals(CODE_ACCOUNT_PERSONAL)) {
+            throw new InvaliteInputException("Error, el tipo de cuenta invalido (accountType), verifique los datos admitidos: 'PERSONAL' o 'EMPRESARIAL'");
+        }
+
+        if (!dto.getProductId().equals(CODE_PRODUCT_CUENTA_AHORRO) &&
+                !dto.getProductId().equals(CODE_PRODUCT_CUENTA_CORRIENTE) &&
+                !dto.getProductId().equals(CODE_PRODUCT_PLAZO_FIJO)) {
+            throw new InvaliteInputException("Error, el tipo de cuenta invalida (productId), verifique los datos admitidos: " +
+                    CODE_PRODUCT_CUENTA_AHORRO + " => CUENTA DE AHORRO , " +
+                    CODE_PRODUCT_CUENTA_CORRIENTE + " => CUENTA CORRIENTE, " +
+                    CODE_PRODUCT_PLAZO_FIJO + " => PLAZO FIJO");
+        }
 
         logger.debug("Data enviada para la creacion de cuenta, object= " + dto);
 
