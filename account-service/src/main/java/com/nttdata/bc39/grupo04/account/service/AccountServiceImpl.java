@@ -125,18 +125,17 @@ public class AccountServiceImpl implements AccountService {
             logger.debug("Error , objecto enviado invalido para la creacion de cuenta");
             throw new InvaliteInputException("Error , objecto enviado invalido para la creacion de cuenta");
         }
-        if (Objects.isNull(dto.getAccountType())) {
-            throw new InvaliteInputException("Error, tipo de cuenta invalido");
-        }
         if (Objects.isNull(dto.getProductId())) {
             throw new InvaliteInputException("Error, codigo de producto invalido");
         }
         if (Objects.isNull(dto.getCustomerId())) {
             throw new InvaliteInputException("Error, codigo de cliente invalido");
         }
-        if (!dto.getAccountType().equals(CODE_ACCOUNT_EMPRESARIAL) &&
-                !dto.getAccountType().equals(CODE_ACCOUNT_PERSONAL)) {
-            throw new InvaliteInputException("Error, el tipo de cuenta invalido (accountType), verifique los datos admitidos: 'PERSONAL' o 'EMPRESARIAL'");
+        if (dto.getCustomerId().length() != LENGHT_CODE_PERSONAL_CUSTOMER &&
+                dto.getCustomerId().length() != LENGHT_CODE_EMPRESARIAL_CUSTOMER) {
+            throw new InvaliteInputException("Error,codigo de cliente invalido, considerar el DNI("
+                    + LENGHT_CODE_PERSONAL_CUSTOMER + ") para cuentas personales" +
+                    " y el ruc(" + LENGHT_CODE_EMPRESARIAL_CUSTOMER + ") para cuentas empresariales");
         }
 
         if (!dto.getProductId().equals(CODE_PRODUCT_CUENTA_AHORRO) &&
@@ -150,7 +149,7 @@ public class AccountServiceImpl implements AccountService {
 
         logger.debug("Data enviada para la creacion de cuenta, object= " + dto);
 
-        if (dto.getAccountType().equals(Constants.CODE_ACCOUNT_EMPRESARIAL)) {
+        if (dto.getCustomerId().length() == LENGHT_CODE_EMPRESARIAL_CUSTOMER) {
             if (Objects.isNull(dto.getHolders())) {
                 throw new InvaliteInputException("Error, titular o titulares de la cuenta, invalido");
             }
@@ -172,7 +171,7 @@ public class AccountServiceImpl implements AccountService {
                 throw new InvaliteInputException("Error, un cliente empresarial no puede tener cuentas de plazo fijo");
             }
         }
-        if (dto.getAccountType().equals(CODE_ACCOUNT_PERSONAL)) {
+        if (dto.getCustomerId().length() == LENGHT_CODE_PERSONAL_CUSTOMER) {
             if (!Objects.isNull(dto.getHolders())) {
                 throw new InvaliteInputException("Error, las cuentas personales tiene como titular al cliente, " + "no hay necesitad de enviarlo.");
             }

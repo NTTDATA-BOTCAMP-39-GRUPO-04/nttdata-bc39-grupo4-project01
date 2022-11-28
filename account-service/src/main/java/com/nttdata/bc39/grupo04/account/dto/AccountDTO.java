@@ -18,7 +18,6 @@ public class AccountDTO implements Serializable {
     private String customerId;
     private List<HolderDTO> holders;
     private List<SignatoryDTO> signatories;
-    private String accountType;
     private double availableBalance;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date createDate;
