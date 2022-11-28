@@ -5,13 +5,13 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class MovementsDTO {
+public class MovementsExplainDTO {
     private String number;
-    private double amount;
+    private double depositAmount;
+    private double withdrawlAmount;
     private Date date;
 }

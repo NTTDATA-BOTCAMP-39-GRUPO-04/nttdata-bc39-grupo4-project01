@@ -16,9 +16,10 @@ import java.util.Date;
 public class MovementsEntity {
     @Id
     private ObjectId id;
-    private String creditnumber;
-    private String accountnumber;
-    private double amount;
-    private String type;
+    private String number;
+    private double depositAmount;
+    private double withdrawlAmount;
     private Date date;
+
+
 }
