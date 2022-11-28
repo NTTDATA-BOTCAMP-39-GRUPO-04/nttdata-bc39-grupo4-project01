@@ -5,7 +5,7 @@
 - Ismael Jose Peralta Arrieche (233431)
 
 ### Documento Draw-io
-- link: https://drive.google.com/file/d/1pNPVU40J9lS7hmyeNGZQ-VtZjR047bin/view?usp=sharing
+- link: https://drive.google.com/file/d/1M05fEeLvu7JyAvdXup1gdYHmCjvDKjIj/view?usp=sharing
 
 ### Lista de Endpoints
 - link: https://docs.google.com/spreadsheets/d/15gxL1YMRoPqtiFvrbC9Po1uKv1rPXNmo/edit?usp=sharing&ouid=104175796356264596233&rtpof=true&sd=true
