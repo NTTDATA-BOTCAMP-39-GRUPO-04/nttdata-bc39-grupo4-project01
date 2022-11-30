@@ -45,3 +45,6 @@
 [2022-11-28 15:54:53] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
 [2022-11-28 15:54:59] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:483529545
 [2022-11-28 15:55:02] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-29 20:04:38] [ DEBUG] [AccountServiceImpl:150] Data enviada para la creacion de cuenta, object= AccountDTO(account=null, productId=03, customerId=48352954, holders=null, signatories=null, availableBalance=0.0, createDate=null, modifyDate=null)
+[2022-11-29 20:04:47] [ DEBUG] [AccountServiceImpl:58] Retornando las cuentas bancarias del cliente con Nro:48352954
+[2022-11-29 20:04:55] [ DEBUG] [AccountServiceImpl:49] Retornando detalle de la cuenta bancaria con Nro:166977027855320221129

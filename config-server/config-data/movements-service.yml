@@ -1,6 +1,6 @@
 server.port: 9095
-spring.data.mongodb.database: bank-db
+spring.data.mongodb.database: movements-db
 spring.data.mongodb.host: localhost
 spring.data.mongodb.port: 27017
-spring.data.mongodb.uri: mongodb://localhost/bank-db
+spring.data.mongodb.uri: mongodb://localhost/movements-db
 spring.autoconfigure.exclude: org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
